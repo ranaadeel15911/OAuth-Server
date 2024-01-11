@@ -36,7 +36,7 @@ passport.use(
         clientID:clientid,
         clientSecret:clientsecret,
         
-        callbackURL:"https://o-auth-server-kappa.vercel.app/auth/googl/adeel",
+        callbackURL:"/auth/google/callback",
         scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
@@ -81,7 +81,7 @@ the cookie when it used to get user info in a callback */
 // app.get("/auth/google",passport.authenticate("google",{scope:[
 //     "profile","email"
 // ]}))
-app.get("https://o-auth-server-kappa.vercel.app/auth/googl/adeel",passport.authenticate("google",{
+app.get("/auth/google/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
