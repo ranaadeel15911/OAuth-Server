@@ -36,7 +36,7 @@ passport.use(
         clientID:clientid,
         clientSecret:clientsecret,
         
-        callbackURL:"https://o-auth-server-kappa.vercel.app/auth/google/callback",
+        callbackURL:["https://o-auth-server-kappa.vercel.app/auth/google/callback","https://o-auth-server-kappa.vercel.app/login/sucess"],
         scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
@@ -89,6 +89,7 @@ app.get("/login/sucess",async(req,res)=>{
 console.log(req)
     if(req.user){
         res.status(200).json({message:"user Login",user:req.user})
+        return
     }else{
         res.status(400).json({message:"Not Authorized"})
     }
