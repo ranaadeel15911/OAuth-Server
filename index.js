@@ -10,8 +10,8 @@ const passport = require("passport")
 //passport package is use to make connection between google and website
 const userdb = require("./model/userSchema")
 const OAuth2Strategy = require("passport-google-oauth2").Strategy
-const clientid= "1067823704600-1p7b9pe0ekd3s6aavvdg5anievotscre.apps.googleusercontent.com"
-const clientsecret = "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"
+const clientid= "308110168351-uc5tjom0127oalv4m2tb99glrksog3tk.apps.googleusercontent.com"
+const clientsecret = "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"
 
 app.use(cors({
     origin:"https://o-auth-client.vercel.app",
@@ -81,7 +81,7 @@ the cookie when it used to get user info in a callback */
 app.get("/auth/google",passport.authenticate("google",{scope:[
     "profile","email"
 ]}))
-app.get("/auth/googl/callback",passport.authenticate("google",{
+app.get("/auth/googl/adeel",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
