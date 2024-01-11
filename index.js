@@ -95,6 +95,7 @@ console.log(req)
 app.get("/",(req,resp)=>{
     resp.json("Server Running")
 })
+
 app.get("/logout",(req,res,next)=>{
     //hover on res.logout function we see message Terminate an existing login session.
     req.logout(function(err){
