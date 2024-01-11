@@ -35,7 +35,7 @@ passport.use(
     new OAuth2Strategy({
         clientID:clientid,
         clientSecret:clientsecret,
-        callbackURL:"/auth/googl/callback",
+        callbackURL:"/auth/google/callback",
         scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
