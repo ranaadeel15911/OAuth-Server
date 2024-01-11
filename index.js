@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 // const PORT = 900
-const PORT = 'https://o-auth-server-kappa.vercel.app'
+const PORT = "https://o-auth-server-kappa.vercel.app"
 require("./db/conec")
 const session = require("express-session")
 const passport = require("passport")
@@ -81,7 +81,7 @@ the cookie when it used to get user info in a callback */
 // app.get("/auth/google",passport.authenticate("google",{scope:[
 //     "profile","email"
 // ]}))
-app.get("/auth/google/adeel",passport.authenticate("google",{
+app.get("https://o-auth-server-kappa.vercel.app/auth/googl/adeel",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
