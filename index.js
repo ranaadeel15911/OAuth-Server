@@ -78,9 +78,9 @@ the cookie when it used to get user info in a callback */
 
 
 //initialize google auth login
-// app.get("/auth/google",passport.authenticate("google",{scope:[
-//     "profile","email"
-// ]}))
+app.get("/auth/google",passport.authenticate("google",{scope:[
+    "profile","email"
+]}))
 app.get("/auth/google/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
@@ -90,14 +90,10 @@ app.get("/login/sucess",async(req,res)=>{
         res.status(200).json({message:"user Login",user:req.user}  
     }
     else{
-        // res.status(400).json({message:"Not Authorized"})
-        res.json("Not found")
+        res.status(400).json({message:"Not Authorized"})
+        // res.json("Not found")
     }
 })
-app.get("/",(req,resp)=>{
-    resp.json("Server Running")
-})
-
 app.get("/logout",(req,res,next)=>{
     //hover on res.logout function we see message Terminate an existing login session.
     req.logout(function(err){
