@@ -36,7 +36,7 @@ passport.use(
         clientID:clientid,
         clientSecret:clientsecret,
         
-        callbackURL:"/auth/google/callback",
+        callbackURL:"/auth/google/adeel",
         scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
@@ -78,9 +78,9 @@ the cookie when it used to get user info in a callback */
 
 
 //initialize google auth login
-// app.get("/auth/google",passport.authenticate("google",{scope:[
-//     "profile","email"
-// ]}))
+app.get("/auth/google",passport.authenticate("google",{scope:[
+    "profile","email"
+]}))
 app.get("/auth/googl/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
