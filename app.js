@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 // const PORT = 900
-const PORT = ' https://o-auth-server-kappa.vercel.app'
+const PORT = 'https://o-auth-server-kappa.vercel.app'
 require("./db/conec")
 const session = require("express-session")
 const passport = require("passport")
@@ -105,6 +105,6 @@ app.get("/logout",(req,res,next)=>{
         res.redirect("http://localhost:3000");
     })
 })
-app.listen(PORT,()=>{
+app.listen("https://o-auth-server-kappa.vercel.app",()=>{
     console.log(`Server Running on Port ${PORT}`)
 })
