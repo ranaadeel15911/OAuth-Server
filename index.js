@@ -10,8 +10,8 @@ const passport = require("passport")
 //passport package is use to make connection between google and website
 const userdb = require("./model/userSchema")
 const OAuth2Strategy = require("passport-google-oauth2").Strategy
-const clientid= "308110168351-uc5tjom0127oalv4m2tb99glrksog3tk.apps.googleusercontent.com"
-const clientsecret = "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"
+const clientid= "863244427157-t37qheo426632e4bg45n49rav0uke1l5.apps.googleusercontent.com"
+const clientsecret = "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"
 
 app.use(cors({
     origin:"https://o-auth-client.vercel.app",
@@ -108,6 +108,6 @@ app.get("/logout",(req,res,next)=>{
     })
 })
 
-app.listen("http://o-auth-server-kappa.vercel.app",()=>{
+app.listen("https://o-auth-server-kappa.vercel.app",()=>{
     console.log(`Server Running on Port ${PORT}`)
 })
