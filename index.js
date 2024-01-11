@@ -12,15 +12,7 @@ const userdb = require("./model/userSchema")
 const OAuth2Strategy = require("passport-google-oauth2").Strategy
 const clientid= "863244427157-t37qheo426632e4bg45n49rav0uke1l5.apps.googleusercontent.com"
 const clientsecret = "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"
-app.use((req, res, next) => {
-    res.set({
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
-    });
 
-    next();
-});
 app.use(cors({
     origin:"https://o-auth-client.vercel.app",
     methods:"GET,POST,PUT,DELETE",
