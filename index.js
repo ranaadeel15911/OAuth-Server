@@ -35,7 +35,8 @@ passport.use(
     new OAuth2Strategy({
         clientID:clientid,
         clientSecret:clientsecret,
-        callbackURL:"/auth/google/callback",
+        
+        callbackURL:"http://o-auth-server-kappa.vercel.app/auth/google/callback",
         scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
