@@ -10,18 +10,18 @@ const passport = require("passport")
 //passport package is use to make connection between google and website
 const userdb = require("./model/userSchema")
 const OAuth2Strategy = require("passport-google-oauth2").Strategy
-const clientid= "863244427157-t37qheo426632e4bg45n49rav0uke1l5.apps.googleusercontent.com"
-const clientsecret = "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"
+const clientid= "1067823704600-1p7b9pe0ekd3s6aavvdg5anievotscre.apps.googleusercontent.com"
+const clientsecret = "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"
 
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:"https://o-auth-client.vercel.app",
     methods:"GET,POST,PUT,DELETE",
     credentials:true
 }))
 app.use(express.json())
 //it will make a unique id when user will login same as jwt make 
 app.use(session({
-    secret:"12345abcghi",
+    secret:"12345abci",
     resave:false,
     saveUninitialized:true,
 }))
@@ -81,8 +81,8 @@ the cookie when it used to get user info in a callback */
 //     "profile","email"
 // ]}))
 app.get("/auth/googl/callback",passport.authenticate("google",{
-    successRedirect:"http://localhost:3000/dashboard",
-    failureRedirect:"http://localhost:3000/login"
+    successRedirect:"https://o-auth-client.vercel.app/dashboard",
+    failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
 app.get("/login/sucess",async(req,res)=>{
 console.log(req)
@@ -103,7 +103,7 @@ app.get("/logout",(req,res,next)=>{
             
             return next(err)
         }
-        res.redirect("http://localhost:3000");
+        res.redirect("https://o-auth-client.vercel.app");
     })
 })
 app.listen("https://o-auth-server-kappa.vercel.app",()=>{
