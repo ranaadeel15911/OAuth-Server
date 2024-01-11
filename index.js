@@ -78,9 +78,9 @@ the cookie when it used to get user info in a callback */
 
 
 //initialize google auth login
-app.get("/auth/google",passport.authenticate("google",{scope:[
-    "profile","email"
-]}))
+// app.get("/auth/google",passport.authenticate("google",{scope:[
+//     "profile","email"
+// ]}))
 app.get("/auth/google/adeel",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
@@ -108,6 +108,6 @@ app.get("/logout",(req,res,next)=>{
     })
 })
 
-app.listen("https://o-auth-server-kappa.vercel.app",()=>{
+app.listen("http://o-auth-server-kappa.vercel.app",()=>{
     console.log(`Server Running on Port ${PORT}`)
 })
