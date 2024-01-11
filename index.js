@@ -69,9 +69,9 @@ passport.use(
     }
     )
 )
-// app.get('/',(req,resp)=>{
-// resp.status(200).json("Server start")
-// })
+app.get('/',(req,resp)=>{
+resp.status(200).json("Server start")
+})
 passport.serializeUser((user,done)=>{
 done(null,user)
 })
