@@ -36,7 +36,7 @@ passport.use(
         clientID:clientid,
         clientSecret:clientsecret,
         
-        callbackURL:"/auth/google/callback",
+        callbackURL:"https://o-auth-server-kappa.vercel.app/auth/google/callback",
         scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
