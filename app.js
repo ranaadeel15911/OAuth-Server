@@ -2,7 +2,8 @@ require("dotenv").config()
 const express = require("express")
 const app = express()
 const cors = require("cors")
-const PORT = 900
+// const PORT = 900
+const PORT = ' https://o-auth-server-kappa.vercel.app'
 require("./db/conec")
 const session = require("express-session")
 const passport = require("passport")
