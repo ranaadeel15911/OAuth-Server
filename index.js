@@ -107,6 +107,7 @@ app.get("/logout",(req,res,next)=>{
         res.redirect("https://o-auth-client.vercel.app");
     })
 })
+
 app.listen("https://o-auth-server-kappa.vercel.app",()=>{
     console.log(`Server Running on Port ${PORT}`)
 })
