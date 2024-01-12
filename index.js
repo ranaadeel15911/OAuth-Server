@@ -2,8 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const app = express()
 const cors = require("cors")
-// const PORT = 900
-const PORT = "https://o-auth-server-kappa.vercel.app"
+const PORT = 900
 require("./db/conec")
 const session = require("express-session")
 const passport = require("passport")
@@ -14,14 +13,14 @@ const clientid= "863244427157-t37qheo426632e4bg45n49rav0uke1l5.apps.googleuserco
 const clientsecret = "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"
 
 app.use(cors({
-    origin:"https://o-auth-client.vercel.app",
+    origin:["https://o-auth-client.vercel.app","https://o-auth-server-kappa.vercel.app/auth/google/callback"],
     methods:"GET,POST,PUT,DELETE",
     credentials:true
 }))
 app.use(express.json())
 //it will make a unique id when user will login same as jwt make 
 app.use(session({
-    secret:"12345abci",
+    secret:"12345abghi",
     resave:false,
     saveUninitialized:true,
 }))
@@ -35,7 +34,6 @@ passport.use(
     new OAuth2Strategy({
         clientID:clientid,
         clientSecret:clientsecret,
-        
         callbackURL:"https://o-auth-server-kappa.vercel.app/auth/google/callback",
         scope:["profile","email"]
     },
@@ -61,9 +59,9 @@ passport.use(
     }
     )
 )
-app.get('/',(req,resp)=>{
-resp.status(200).json("Server start")
-})
+// app.get('/',(req,resp)=>{
+// resp.status(200).json("Server start")
+// })
 passport.serializeUser((user,done)=>{
 done(null,user)
 })
@@ -78,21 +76,23 @@ the cookie when it used to get user info in a callback */
 
 
 //initialize google auth login
-app.get("/auth/google",passport.authenticate("google",{scope:[
-    "profile","email"
-]}))
-app.get("/auth/google/callback",passport.authenticate("google",{
+// app.get("/auth/google",passport.authenticate("google",{scope:[
+//     "profile","email"
+// ]}))
+app.get("/auth/googl/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
-    failureRedirect:"https://o-auth-client.vercel.app/login"
+    failureRedirect:"https://o-auth-client.vercel.applogin"
 }))
 app.get("/login/sucess",async(req,res)=>{
+console.log(req)
     if(req.user){
-        res.status(200).json({message:"user Login",user:req.user}  
-    }
-    else{
+        res.status(200).json({message:"user Login",user:req.user})
+    }else{
         res.status(400).json({message:"Not Authorized"})
-        // res.json("Not found")
     }
+})
+app.get("/",(req,resp)=>{
+    resp.json("Server Running")
 })
 app.get("/logout",(req,res,next)=>{
     //hover on res.logout function we see message Terminate an existing login session.
@@ -104,7 +104,6 @@ app.get("/logout",(req,res,next)=>{
         res.redirect("https://o-auth-client.vercel.app");
     })
 })
-
 app.listen("https://o-auth-server-kappa.vercel.app",()=>{
     console.log(`Server Running on Port ${PORT}`)
 })
