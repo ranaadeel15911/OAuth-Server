@@ -79,9 +79,9 @@ the cookie when it used to get user info in a callback */
 // app.get("/auth/google",passport.authenticate("google",{scope:[
 //     "profile","email"
 // ]}))
-app.get("/auth/googl/callback",passport.authenticate("google",{
+app.get("/auth/google/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
-    failureRedirect:"https://o-auth-client.vercel.applogin"
+    failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
 app.get("/login/sucess",async(req,res)=>{
 console.log(req)
