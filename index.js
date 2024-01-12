@@ -51,7 +51,14 @@ passport.use(
 
                 await user.save();
             }
-
+app.get("/login/sucess",async(req,res)=>{
+                try {
+                    let user = await userdb.findOne({googleId:profile.id})
+                    console.log(user)
+                    if (user) {
+                        res.json(user)
+                    }        
+                } 
             return done(null,user)
         } catch (error) {
             return done(error,null)
@@ -83,14 +90,14 @@ app.get("/auth/google/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/login",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
-app.get("/login/sucess",async(req,res)=>{
-console.log(req)
-    if(req.user){
-        res.status(200).json({message:"user Login",user:req.user})
-    }else{
-        res.status(400).json({message:"Not Authorized"})
-    }
-})
+// app.get("/login/sucess",async(req,res)=>{
+// console.log(req)
+//     if(req.user){
+//         res.status(200).json({message:"user Login",user:req.user})
+//     }else{
+//         res.status(400).json({message:"Not Authorized"})
+//     }
+// })
 app.get("/",(req,resp)=>{
     resp.json("Server Running")
 })
