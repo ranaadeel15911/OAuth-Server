@@ -13,7 +13,7 @@ const clientid= "863244427157-t37qheo426632e4bg45n49rav0uke1l5.apps.googleuserco
 const clientsecret = "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"
 
 app.use(cors({
-    origin:["https://o-auth-client.vercel.app","https://o-auth-server-kappa.vercel.app/auth/google/callback"],
+    origin:"https://o-auth-client.vercel.app",
     methods:"GET,POST,PUT,DELETE",
     credentials:true
 }))
