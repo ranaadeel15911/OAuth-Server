@@ -80,7 +80,7 @@ the cookie when it used to get user info in a callback */
 //     "profile","email"
 // ]}))
 app.get("/auth/google/callback",passport.authenticate("google",{
-    successRedirect:"https://o-auth-client.vercel.app/dashboard",
+    successRedirect:"https://o-auth-client.vercel.app/login",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
 app.get("/login/sucess",async(req,res)=>{
