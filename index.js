@@ -2,7 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const app = express()
 const cors = require("cors")
-const PORT = 900
+const PORT = "https://o-auth-server-kappa.vercel.app"
 require("./db/conec")
 const session = require("express-session")
 const passport = require("passport")
@@ -20,7 +20,7 @@ app.use(cors({
 app.use(express.json())
 //it will make a unique id when user will login same as jwt make 
 app.use(session({
-    secret:"12345abghi",
+    secret:"12345abcghi",
     resave:false,
     saveUninitialized:true,
 }))
@@ -34,7 +34,7 @@ passport.use(
     new OAuth2Strategy({
         clientID:clientid,
         clientSecret:clientsecret,
-        callbackURL:"https://o-auth-server-kappa.vercel.app/auth/google/callback",
+        callbackURL:"/auth/googl/callback",
         scope:["profile","email"]
     },
     async(accessToken,refreshToken,profile,done)=>{
@@ -51,7 +51,7 @@ passport.use(
 
                 await user.save();
             }
-app.get("/login/sucess",async(req,res)=>{
+            app.get("/login/sucess",async(req,res)=>{
                 try {
                     let user = await userdb.findOne({googleId:profile.id})
                     console.log(user)
@@ -59,16 +59,22 @@ app.get("/login/sucess",async(req,res)=>{
                         res.json(user)
                     }        
                 } 
+            
+            catch (error) {
+                res.json(error)
+            }
+            })
             return done(null,user)
+            
         } catch (error) {
             return done(error,null)
         }
     }
     )
 )
-// app.get('/',(req,resp)=>{
-// resp.status(200).json("Server start")
-// })
+ app.get('/',(req,resp)=>{
+ resp.status(200).json("Server start")
+ })
 passport.serializeUser((user,done)=>{
 done(null,user)
 })
@@ -86,17 +92,22 @@ the cookie when it used to get user info in a callback */
 // app.get("/auth/google",passport.authenticate("google",{scope:[
 //     "profile","email"
 // ]}))
-app.get("/auth/google/callback",passport.authenticate("google",{
-    successRedirect:"https://o-auth-client.vercel.app/login",
+app.get("/auth/googl/callback",passport.authenticate("google",{
+    successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
 // app.get("/login/sucess",async(req,res)=>{
-// console.log(req)
-//     if(req.user){
-//         res.status(200).json({message:"user Login",user:req.user})
-//     }else{
-//         res.status(400).json({message:"Not Authorized"})
-//     }
+//     try {
+//         let user = await userdb.find({})
+//         console.log(user)
+//         if (user) {
+//             res.json(user)
+//         }        
+//     } 
+
+// catch (error) {
+//     res.json(error)
+// }
 // })
 app.get("/",(req,resp)=>{
     resp.json("Server Running")
