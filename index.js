@@ -88,7 +88,7 @@ app.get("/login/sucess",async(req,res)=>{
     if(req.user){
       return  res.status(200).json({message:"user Login",user:req.user})
     }else{
-        res.status(400).json({message:req?.session})
+        res.status(400).json({message:req?.session?.passport?.user})
     }
 })
 // app.get("/login/sucess",async(req,res)=>{
