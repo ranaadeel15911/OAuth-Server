@@ -85,7 +85,11 @@ app.get("/auth/google/callback",passport.authenticate("google",{
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
 app.get("/login/sucess",async(req,res)=>{
-    res.status(200).json("Passed")
+    if(req.user){
+      return  res.status(200).json({message:"user Login",user:req.user})
+    }else{
+        res.status(400).json({message:"Not Authorized"})
+    }
 })
 // app.get("/login/sucess",async(req,res)=>{
 //     try {
