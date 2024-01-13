@@ -83,7 +83,7 @@ app.get("/auth/google/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
-app.get("/login/sucess",async(req,res)=>{
+app.get("https://o-auth-server-kappa.vercel.app/login/sucess",async(req,res)=>{
     if(req.user){
         res.status(200).json({message:"Authorized"})
     }else{
