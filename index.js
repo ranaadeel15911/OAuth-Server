@@ -51,19 +51,6 @@ passport.use(
 
                 await user.save();
             }
-            app.get("/login/sucess",async(req,res)=>{
-                try {
-                    let user = await userdb.findOne({googleId:profile.id})
-                    console.log(user)
-                    if (user) {
-                        res.json(user)
-                    }        
-                } 
-            
-            catch (error) {
-                res.json(error)
-            }
-            })
             return done(null,user)
             
         } catch (error) {
@@ -92,10 +79,17 @@ the cookie when it used to get user info in a callback */
 // app.get("/auth/google",passport.authenticate("google",{scope:[
 //     "profile","email"
 // ]}))
-app.get("/auth/google/callback",passport.authenticate("google",{
+app.get("https://o-auth-server-kappa.vercel.app/auth/google/callback",passport.authenticate("google",{
     successRedirect:"https://o-auth-client.vercel.app/dashboard",
     failureRedirect:"https://o-auth-client.vercel.app/login"
 }))
+app.get("/login/sucess",async(req,res)=>{
+    if(req.user){
+        res.status(200).json({message:"user Login",user:req.user})
+    }else{
+        res.status(400).json({message:"Not Authorized"})
+    }
+})
 // app.get("/login/sucess",async(req,res)=>{
 //     try {
 //         let user = await userdb.find({})
