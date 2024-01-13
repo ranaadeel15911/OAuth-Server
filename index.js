@@ -23,6 +23,7 @@ app.use(session({
     secret:"12345abcghi",
     resave:false,
     saveUninitialized:true,
+     cookie:{httpOnly:false}
 }))
 // Passport is Express-compatible authentication middleware for Node.js.
 // Passport's sole purpose is to authenticate requests, which it does through an extensible set of plugins known as strategies
