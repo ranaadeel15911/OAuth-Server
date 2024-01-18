@@ -23,10 +23,11 @@ app.use(session({
     secret:"12345abcghi",
     resave:false,
     saveUninitialized:true,
-     cookie:{maxAge: 7 * 24 * 60 * 60 * 1000, 
+     cookie:{
             secure: true,
             sameSite: "none",}
 }))
+app.enable('trust proxy')
 // Passport is Express-compatible authentication middleware for Node.js.
 // Passport's sole purpose is to authenticate requests, which it does through an extensible set of plugins known as strategies
 //The API is simple: you provide Passport a request to authenticate, and Passport provides hooks for
